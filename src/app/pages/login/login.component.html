@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ingreso al Sistema
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <ion-card-header>
+      <ion-card-title>Registro de movilidad</ion-card-title>
+    </ion-card-header>
+      <form [formGroup]="loginForm" (submit)="submitLoginForm()">
+        <ion-input 
+          label="Email" 
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="email"
+          errorText="El correo es requerido y debe ser valido"
+          placeholder="Ingrese Email">
+        </ion-input>
+        <br>
+        <ion-input 
+          label="Password" 
+          type="password" 
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="password"
+          errorText="La Contraseña o correo no es Valido"
+          placeholder="Ingrese Password">
+      </ion-input>
+      <br>
+      <ion-button type="submit" [disabled]="!loginForm.valid" expand="block">Ingresar</ion-button> 
+      <br>
+      <ion-button (click)="toRegister()" expand="block">Registrarse</ion-button> 
+      <br>
+      <ion-button expand="block">Olvido su Password</ion-button> 
+      </form>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
