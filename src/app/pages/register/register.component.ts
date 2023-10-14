@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 
 //confirma match entre password
@@ -20,20 +20,27 @@ export function passwordMatchValidator (passwordKey:string, confirmPasswordKey:s
 
 export class RegisterComponent  implements OnInit {
 
-  constructor(private router:Router, private fb:FormBuilder, private accountService:AccountService) { }
+  registerForm: FormGroup;
 
-  registerForm = this.fb.group({
-    email : new FormControl('', [Validators.email, Validators.required]),
-    password : new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")]),
-    confirmPassword : new FormControl('')
-  },{
-    validator : passwordMatchValidator('password', 'confirmPassword')
-  });
+  constructor(private router: Router, private fb: FormBuilder, private accountService: AccountService) {
+    this.registerForm = this.fb.group({
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")]),
+      confirmPassword: new FormControl(''),
+      date: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      run: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{7,8}-[0-9kK]{1}$")]),
+      work: new FormControl('yes'),
+      day: new FormControl({ value: 'not', disabled: false }, [Validators.required]),
+      stade: new FormControl('', [Validators.required]),
+      stade2: new FormControl({ value: '', disabled: false } , [Validators.required]),
+    }, {
+      validator: passwordMatchValidator('password', 'confirmPassword'),
+    });
+  }
 
-  ngOnInit() {}
-
-  backToLogin(){
-    this.router.navigate(['/']);
+  ngOnInit() {
+    
   }
 
   submitForm(){
@@ -41,4 +48,8 @@ export class RegisterComponent  implements OnInit {
     this.accountService.register(this.registerForm.value);
   }
 
+  backToLogin(){
+    this.router.navigate(['/']);
+  }
 }
+

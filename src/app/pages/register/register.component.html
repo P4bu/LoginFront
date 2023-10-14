@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Registro de Usuario
+      Encuesta
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,30 @@
       <ion-card-title>Registro de Usuario</ion-card-title>
     </ion-card-header>
       <form [formGroup]="registerForm" (submit)="submitForm()">
+        
+      <br>
+        <ion-input 
+          label="Nombre Completo" 
+          type="text"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="name"
+          errorText=""
+          placeholder="Ingrese Su Nombre Completo">
+        </ion-input>
+
+      <br>
+        <ion-input 
+          label="RUN" 
+          type="string"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="run"
+          errorText="Ingrese su rut sin puntos y con digito verificador"
+          placeholder="11111111-k">
+        </ion-input>
+      <br>
+        
         <ion-input 
           label="Email" 
           type="email"
@@ -20,6 +44,16 @@
           formControlName="email"
           errorText="El correo es requerido y debe ser valido"
           placeholder="Ingrese Email">
+        </ion-input>
+      <br>
+        <ion-input 
+          label="Fecha de Naciminto" 
+          type="date"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="date"
+          errorText=""
+          placeholder="Ingrese Su fecha de nacimiento">
         </ion-input>
       <br>
         <ion-input 
@@ -40,6 +74,37 @@
           formControlName="confirmPassword"
           placeholder="Repita Password">
         </ion-input>
+
+      <br>  
+          <ion-select label="¿Trabajas?" label-placement="floating" fill="outline" formControlName="work">
+            <ion-select-option value="yes">Si</ion-select-option>
+            <ion-select-option value="not">No</ion-select-option>
+          </ion-select>
+  
+
+      <br>  
+        <ion-select label="¿Jornada?" label-placement="floating" fill="outline" formControlName="day" *ngIf="registerForm.get('work')?.value == 'yes'">
+          <ion-select-option value="presencial">Presencial</ion-select-option>
+          <ion-select-option value="hibrida">Hibrida</ion-select-option>
+          <ion-select-option value="teletrabajo">Teletrabajo</ion-select-option>
+        </ion-select>
+
+      <br>  
+        <ion-select label="Comuna residencia" label-placement="floating" fill="outline" formControlName="stade">
+          <ion-select-option value="residencia1">Santiago</ion-select-option>
+          <ion-select-option value="residencia2">Maipu</ion-select-option>
+          <ion-select-option value="residencia3">Recoletas</ion-select-option>
+        </ion-select>
+
+      <br>  
+        <ion-select label="Comuna laboral" label-placement="floating" fill="outline" formControlName="stade2" *ngIf="registerForm.get('day')?.value != 'teletrabajo' && registerForm.get('work')?.value == 'yes'">
+          <ion-select-option value="comunaL1">Santiago</ion-select-option>
+          <ion-select-option value="comunaL2">Maipu</ion-select-option>
+          <ion-select-option value="comunaL3">Recoleta</ion-select-option>
+        </ion-select>
+
+
+        <br>
         <div *ngIf="registerForm.errors?.['passwordMismatch']">
           <ion-label color="danger">Los passwords no coinciden</ion-label>
         </div>
