@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Comparte en tus redes sociales
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +13,11 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div id="container">
+    <ion-button fill="clear" (click)="('https://www.google.es/')"> <ion-icon name="logo-instagram" size="large" position="absolute" text-align="center"> </ion-icon></ion-button>
+    <ion-button fill="clear"> <ion-icon name="logo-facebook" size="large" position="absolute" text-align="center"> </ion-icon></ion-button>
+    <ion-button fill="clear"> <ion-icon name="logo-twitter" size="large" position="absolute" text-align="center"> </ion-icon></ion-button>
+    <ion-button fill="clear" (click)="qr()"> <ion-icon name="qr-code-outline" size="large" position="absolute" text-align="center"> </ion-icon></ion-button>
+  </div> 
+  
 </ion-content>

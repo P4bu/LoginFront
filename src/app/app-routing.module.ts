@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserGuard } from './guard/user.guard';
 import { Tab2Page } from './pages/tab2/tab2.page';
+import { Tab3Page } from './pages/tab3/tab3.page';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'tab2',
     component: Tab2Page
+  },
+  {
+    path: 'tab3',
+    component: Tab3Page
   }
 
 ];
