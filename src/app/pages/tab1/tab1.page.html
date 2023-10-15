@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Encuesta Transporte AIEP 
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,107 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
+   <form [formGroup]="answerForm" (ngSubmit)="submitForm()">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pregunta 1</ion-card-title>
+        <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content>
+        ¿Que tipo de TRASPORTE utilizas para llegar a tu trabajo?
+        <ion-list>
+          <ion-item>
+            <ion-select aria-label="Selecciona una Opcion" value="public" formControlName="answer1">
+              <ion-select-option value="public">Transporte Publico</ion-select-option>
+              <ion-select-option value="private">Transporte Privado</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card *ngIf="answerForm.get('answer1')?.value == 'private'" >
+      <ion-card-header>
+        <ion-card-title>Pregunta 2</ion-card-title>
+        <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content>
+        ¿Compartes tu TRANSPORTE PRIVADO?
+        <ion-list>
+          <ion-item>
+            <ion-select aria-label="Selecciona una Opcion" value="yes" formControlName="answer2">
+              <ion-select-option value="yes">Si</ion-select-option>
+              <ion-select-option value="not">No</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pregunta 3</ion-card-title>
+        <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content>
+        Nombra tu TRANSPORTE más Utilizado
+        <br>
+        <ion-input 
+          label="Transporte" 
+          type="string"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="answer3"
+          errorText=""
+          placeholder="AutoBus">
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pregunta 4</ion-card-title>
+        <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content>
+        ¿Cuantos KM recorre diariamente aprox.?
+        <br>
+        <ion-input 
+          label="KM" 
+          type="number"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="answer4"
+          errorText=""
+          placeholder="20Km">
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pregunta 5</ion-card-title>
+        <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
+      </ion-card-header>    
+      <ion-card-content>
+        ¿Cuantos tiempo demora a diario en el traslado?
+        <br>
+        <ion-input 
+          label="tiempo" 
+          type="number"
+          label-placement="floating" 
+          fill="outline" 
+          formControlName="answer5"
+          errorText=""
+          placeholder="2 horas">
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button type="submit" [disabled]="!answerForm.valid" expand="block">Enviar</ion-button>
+    <ion-button (click)="backToLogin()" expand="block">Volver</ion-button>  
+
+   </form>
 </ion-content>

@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserGuard } from './guard/user.guard';
+import { Tab2Page } from './pages/tab2/tab2.page';
 
 const routes: Routes = [
   {
@@ -16,8 +17,14 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
-    canLoad:[UserGuard]
+    //canLoad:[UserGuard]
+    //ruta para ingresar a los tabs home/tabs/tab1
+  },
+  {
+    path: 'tab2',
+    component: Tab2Page
   }
+
 ];
 @NgModule({
   imports: [

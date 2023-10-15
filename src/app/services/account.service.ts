@@ -12,6 +12,9 @@ export class AccountService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
+  //enviar las respuestas por el formulario
+    answer(){}
+
   register(userCredentials:any){
 
     this.http.post(`${URL}/api/Account/Register`, userCredentials).subscribe({
