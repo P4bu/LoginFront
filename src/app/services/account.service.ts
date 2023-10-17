@@ -16,8 +16,7 @@ export class AccountService {
     answer(){}
 
   register(userRegister:any){
-
-    this.http.post(`${URL}/api/Account/Register`, userRegister).subscribe({
+    this.http.post(`https://localhost:44300/api/Account/register`, userRegister).subscribe({
       next: resp => {
         console.log(resp);
       },

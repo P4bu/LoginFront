@@ -24,19 +24,22 @@ export class RegisterComponent  implements OnInit {
 
   constructor(private router: Router, private fb: FormBuilder, private accountService: AccountService) {
     this.registerForm = this.fb.group({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")]),
-      confirmPassword: new FormControl(''),
-      date: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
       run: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{7,8}-[0-9kK]{1}$")]),
-      work: new FormControl('yes'),
-      day: new FormControl({ value: 'not', disabled: false }),
-      stade: new FormControl('', [Validators.required]),
-      stade2: new FormControl({ value: '', disabled: false }),
+      nombres: new FormControl('', [Validators.required]),
+      apellidos: new FormControl('', [Validators.required]),
+      correo: new FormControl('', [Validators.email, Validators.required]),
+      contraseña: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")]),
+      confirmPassword: new FormControl(''),
+      fecNac: new FormControl('', [Validators.required]),
+      idModalidad: 1,
+      idSitLaboral: 1,
+      IdComunaRes: 1,
+      IdComunaTra: 1,
+      IdEstado: 1,
+      //stade: new FormControl('1', [Validators.required]),
+      //stade2: new FormControl({ value: '', disabled: false }),
     }, {
-      validator: passwordMatchValidator('password', 'confirmPassword'),
+      validator: passwordMatchValidator('contraseña', 'confirmPassword'),
     });
   }
 

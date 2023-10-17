@@ -19,7 +19,7 @@
           type="text"
           label-placement="floating" 
           fill="outline" 
-          formControlName="name"
+          formControlName="nombres"
           errorText=""
           placeholder="Ingrese Su Nombre Completo">
         </ion-input>
@@ -30,7 +30,7 @@
           type="text"
           label-placement="floating" 
           fill="outline" 
-          formControlName="lastName"
+          formControlName="apellidos"
           errorText=""
           placeholder="Ingrese Su Apellidos Completo">
         </ion-input>
@@ -52,17 +52,17 @@
           type="email"
           label-placement="floating" 
           fill="outline" 
-          formControlName="email"
+          formControlName="correo"
           errorText="El correo es requerido y debe ser valido"
           placeholder="Ingrese Email">
         </ion-input>
       <br>
         <ion-input 
           label="Fecha de Naciminto" 
-          type="date"
+          type="datetime-local"
           label-placement="floating" 
           fill="outline" 
-          formControlName="date"
+          formControlName="fecNac"
           errorText=""
           placeholder="Ingrese Su fecha de nacimiento">
         </ion-input>
@@ -72,7 +72,7 @@
           type="password" 
           label-placement="floating" 
           fill="outline" 
-          formControlName="password"
+          formControlName="contraseña"
           errorText="El password es requerido y de contener al menos 8 caracteres, una letra mayuscula, un numero y simbolos "
           placeholder="Ingrese Password">
         </ion-input>
@@ -87,21 +87,21 @@
         </ion-input>
 
       <br>  
-          <ion-select label="¿Trabajas?" label-placement="floating" fill="outline" formControlName="work">
+          <ion-select label="¿Trabajas?" label-placement="floating" fill="outline" formControlName="idSitLaboral">
             <ion-select-option value="yes">Si</ion-select-option>
             <ion-select-option value="not">No</ion-select-option>
           </ion-select>
   
 
       <br>  
-        <ion-select label="¿Jornada?" label-placement="floating" fill="outline" formControlName="day" *ngIf="registerForm.get('work')?.value == 'yes'">
+        <ion-select label="¿Jornada?" label-placement="floating" fill="outline" formControlName="idModalidad" *ngIf="registerForm.get('idSitLaboral')?.value == 'yes'">
           <ion-select-option value="presencial">Presencial</ion-select-option>
           <ion-select-option value="hibrida">Hibrida</ion-select-option>
           <ion-select-option value="teletrabajo">Teletrabajo</ion-select-option>
         </ion-select>
 
       <br>  
-        <ion-select label="Comuna residencia" label-placement="floating" fill="outline" formControlName="stade">
+        <ion-select label="Comuna residencia" label-placement="floating" fill="outline" formControlName="IdComunaRes">
           <ion-select-option value="residencia1">Santiago</ion-select-option>
           <ion-select-option value="residencia2">Maipu</ion-select-option>
           <ion-select-option value="residencia3">Recoletas</ion-select-option>
@@ -109,7 +109,7 @@
 
       <br>  
 
-        <ion-select label="Comuna laboral" label-placement="floating" fill="outline" formControlName="stade2" *ngIf="registerForm.get('day')?.value != 'teletrabajo' && registerForm.get('work')?.value == 'yes'">
+        <ion-select label="Comuna laboral" label-placement="floating" fill="outline" formControlName="IdComunaTra" *ngIf="registerForm.get('idModalidad')?.value != 'teletrabajo' && registerForm.get('idSitLaboral')?.value == 'yes'">
           <ion-select-option value="comunaL1">Santiago</ion-select-option>
           <ion-select-option value="comunaL2">Maipu</ion-select-option>
           <ion-select-option value="comunaL3">Recoleta</ion-select-option>
