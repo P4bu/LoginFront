@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -46,8 +46,9 @@ export class RegisterComponent  implements OnInit {
 
   submitForm(){
     console.log("submit");
+    
     const workControl = this.registerForm.get('work');
-    if(workControl && workControl.value == 'yes'){
+    if(workControl?.value == 'yes'){
       this.accountService.register(this.registerForm.value);
       this.router.navigate(['home']);
     }
