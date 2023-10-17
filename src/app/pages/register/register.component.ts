@@ -29,6 +29,7 @@ export class RegisterComponent  implements OnInit {
       confirmPassword: new FormControl(''),
       date: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       run: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{7,8}-[0-9kK]{1}$")]),
       work: new FormControl('yes'),
       day: new FormControl({ value: 'not', disabled: false }),

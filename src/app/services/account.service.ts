@@ -15,9 +15,9 @@ export class AccountService {
   //enviar las respuestas por el formulario
     answer(){}
 
-  register(userCredentials:any){
+  register(userRegister:any){
 
-    this.http.post(`${URL}/api/Account/Register`, userCredentials).subscribe({
+    this.http.post(`${URL}/api/Account/Register`, userRegister).subscribe({
       next: resp => {
         console.log(resp);
       },
@@ -27,8 +27,8 @@ export class AccountService {
     });
   }
 
-  loginUser(userCredentials:any){
-    return this.http.post(`${URL}/api/Account/Login`, userCredentials);
+  loginUser(userLogin:any){
+    return this.http.post(`${URL}/api/Account/Login`, userLogin);
   }
 
   checkToken(){
