@@ -18,8 +18,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
-    //canLoad:[UserGuard]
-    //ruta para ingresar a los tabs home/tabs/tab1
+    canLoad:[UserGuard]
   },
   {
     path: 'tab2',
