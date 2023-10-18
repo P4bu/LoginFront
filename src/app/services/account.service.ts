@@ -17,8 +17,9 @@ export class AccountService {
 
   register(userRegister:any){
 
-    this.http.post(`${URL}/api/Account/Register`, userRegister).subscribe({
+    this.http.post(`${URL}/api/Account/register`, userRegister).subscribe({
       next: resp => {
+        this.router.navigate(['/'])
         console.log(resp);
       },
       error: error => {
@@ -28,7 +29,7 @@ export class AccountService {
   }
 
   loginUser(userLogin:any){
-    return this.http.post(`${URL}/api/Account/Login`, userLogin);
+    return this.http.post(`${URL}/api/Account/login`, userLogin);
   }
 
   checkToken(){
