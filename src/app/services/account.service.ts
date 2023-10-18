@@ -2,6 +2,7 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { sitLaboral } from '../models/sit-laboral';
 
 const URL = environment.API;
 
@@ -18,18 +19,27 @@ export class AccountService {
   register(userRegister:any){
 
     this.http.post(`${URL}/api/Account/register`, userRegister).subscribe({
-      next: resp => {
+      next: (resp:any) => {
         this.router.navigate(['/'])
         console.log(resp);
       },
       error: error => {
         console.error(error);
       }
-    });
+    })
   }
 
   loginUser(userLogin:any){
-    return this.http.post(`${URL}/api/Account/login`, userLogin);
+    return this.http.post(`${URL}/api/Account/login`, userLogin)
+    // .subscribe({
+    //   next: resp => {
+
+    //   },
+    //   error: error => {
+
+    //   }
+    // })
+
   }
 
   checkToken(){
@@ -55,4 +65,31 @@ export class AccountService {
     })
   }
 
+  getSitLaboral(){
+
+    return this.http.get(`${URL}/api/Account/getSitLaboral`)
+
+  }
+
+  getModalidades(){
+
+    var resp = this.http.get(`${URL}/api/Account/getModalidades`)
+    console.log(resp)
+    return resp
+
+  }
+
+  getComunasRes(){
+
+    return this.http.get(`${URL}/api/Account/getComunasRes`)
+
+  }
+
+  getComunasTra(){
+
+    return this.http.get(`${URL}/api/Account/getComunasTra`)
+
+  }
 }
+
+
