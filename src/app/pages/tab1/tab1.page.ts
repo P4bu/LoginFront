@@ -10,10 +10,9 @@ import { HomeService } from 'src/app/services/home.service';
 })
 export class Tab1Page implements OnInit {
 
-  answerForm: FormGroup;
-  idUsuario: string = ''
+  answerForm: FormGroup
+  idUsuario: any
   tipoTransporte: any
-  esCompartido: boolean = false
   transporte: any
 
 
@@ -21,17 +20,21 @@ export class Tab1Page implements OnInit {
     this.answerForm = this.fb.group({
       idTipoTransporte: new FormControl([Validators.required]),
       esCompartido: new FormControl([Validators.required]),
+      idUsuario: new FormControl(''),
       idTransporte: new FormControl([Validators.required]),
       km_recorrido: new FormControl(),
       minutos_recorrido: new FormControl(),
+      dias_trabajo: new FormControl()
     });
   }
 
   ngOnInit() {
 
     this.homeService.getIdUser().subscribe((data:any) => {
+
       this.idUsuario = data.id
       console.log(this.idUsuario)
+      this.answerForm?.get('idUsuario')?.setValue(this.idUsuario)
     })
 
     this.homeService.getTipoTransportes().subscribe((data:any) => {
@@ -62,8 +65,9 @@ export class Tab1Page implements OnInit {
 
 
   submitForm(){
+
     console.log("submit")
-    this.homeService.submitEncuesta(this.answerForm.value, this.idUsuario, this.esCompartido).subscribe({
+    this.homeService.submitEncuesta(this.answerForm.value).subscribe({
       next: (resp:any) => {
         console.log(resp);
         this.router.navigate(['/home/tabs/tab2']);
@@ -77,5 +81,4 @@ export class Tab1Page implements OnInit {
   backToLogin(){
     this.router.navigate(['/']);
   }
-
 }

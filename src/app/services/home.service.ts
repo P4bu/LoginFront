@@ -34,18 +34,13 @@ export class HomeService {
     return this.http.get('https://localhost:44300/api/Home/getTipoTransportes', {headers});
   }
 
-  submitEncuesta(encuestaDTO: any, Id: string, esCompartido: boolean):Observable<any> {
+  submitEncuesta(encuestaDTO: any) {
+
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    const requestData = {
-      _encuestaDTO: encuestaDTO,
-      Id: Id,
-      esCompartido: esCompartido
-    };
-
-    return this.http.post(`https://localhost:44300/api/Home/submitEncuesta`, requestData, {headers: headers});
+    return this.http.post(`https://localhost:44300/api/Home/submitEncuesta`,encuestaDTO ,{headers: headers});
   }
 }
