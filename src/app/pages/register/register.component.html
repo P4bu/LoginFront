@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Registro de Usuario
+      Encuesta Transporte AIEP
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,41 +12,109 @@
       <ion-card-title>Registro de Usuario</ion-card-title>
     </ion-card-header>
       <form [formGroup]="registerForm" (submit)="submitForm()">
-        <ion-input 
-          label="Email" 
-          type="email"
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="email"
-          errorText="El correo es requerido y debe ser valido"
-          placeholder="Ingrese Email">
+
+      <br>
+        <ion-input
+          label="Nombres"
+          type="text"
+          label-placement="floating"
+          fill="outline"
+          formControlName="nombres"
+          errorText=""
+          placeholder="Ingrese sus Nombres">
+        </ion-input>
+
+        <br>
+        <ion-input
+          label="Apellidos"
+          type="text"
+          label-placement="floating"
+          fill="outline"
+          formControlName="apellidos"
+          errorText=""
+          placeholder="Ingrese sus Apellidos">
+        </ion-input>
+
+      <br>
+        <ion-input
+          label="RUN"
+          type="string"
+          label-placement="floating"
+          fill="outline"
+          formControlName="run"
+          errorText="Ingrese su rut sin puntos y con guión"
+          placeholder="11111111-k">
         </ion-input>
       <br>
-        <ion-input 
+
+        <ion-input
+          label="Email"
+          type="email"
+          label-placement="floating"
+          fill="outline"
+          formControlName="correo"
+          errorText="El correo es requerido y debe ser valido"
+          placeholder="Ingrese su Email">
+        </ion-input>
+      <br>
+        <ion-input
+          label="Fecha de Naciminto"
+          type="date"
+          label-placement="floating"
+          fill="outline"
+          formControlName="fecNac"
+          errorText=""
+          placeholder="Ingrese Su fecha de nacimiento">
+        </ion-input>
+      <br>
+        <ion-input
           label="Password"
-          type="password" 
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="password"
+          type="password"
+          label-placement="floating"
+          fill="outline"
+          formControlName="contraseña"
           errorText="El password es requerido y de contener al menos 8 caracteres, una letra mayuscula, un numero y simbolos "
           placeholder="Ingrese Password">
         </ion-input>
       <br>
-        <ion-input 
-          label="Repetir Password" 
-          type="password" 
-          label-placement="floating" 
-          fill="outline" 
+        <ion-input
+          label="Repetir Password"
+          type="password"
+          label-placement="floating"
+          fill="outline"
           formControlName="confirmPassword"
           placeholder="Repita Password">
         </ion-input>
+
+      <br>
+          <ion-select label="Situación Laboral" label-placement="floating" fill="outline" formControlName="idSitLaboral">
+            <ion-select-option *ngFor="let item of sitLaboral" [value]="item.id"> {{item.nombre}} </ion-select-option>
+          </ion-select>
+
+      <br>
+        <ion-select *ngIf="registerForm.get('idSitLaboral')?.value == 1" label="¿Jornada?" label-placement="floating" fill="outline" formControlName="IdModalidad">
+          <ion-select-option *ngFor="let item of modalidades" [value]="item.id"> {{item.nombre}} </ion-select-option>
+        </ion-select>
+
+      <br>
+        <ion-select label="Comuna residencia" label-placement="floating" fill="outline" formControlName="IdComunaRes">
+          <ion-select-option *ngFor="let item of comunasRes" [value]="item.id"> {{item.nombre}} </ion-select-option>
+        </ion-select>
+
+      <br>
+
+        <ion-select *ngIf="registerForm.get('idSitLaboral')?.value ==1 && registerForm.get('IdModalidad')?.value !=3" label="Comuna laboral" label-placement="floating" fill="outline" formControlName="IdComunaTra">
+          <ion-select-option *ngFor="let item of comunasTra" [value]="item.id"> {{item.nombre}} </ion-select-option>
+        </ion-select>
+
+        <br>
         <div *ngIf="registerForm.errors?.['passwordMismatch']">
           <ion-label color="danger">Los passwords no coinciden</ion-label>
         </div>
       <br>
-      <ion-button type="submit" [disabled]="!registerForm.valid" expand="block">Enviar</ion-button> 
+      <ion-button type="submit" [disabled]="!registerForm.valid" expand="block">Enviar</ion-button>
       <br>
-      <ion-button (click)="backToLogin()" expand="block">Volver</ion-button> 
+      <ion-button (click)="backToLogin()" expand="block">Volver</ion-button>
       </form>
     <ion-card-content>
 

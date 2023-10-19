@@ -2,6 +2,7 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { sitLaboral } from '../models/sit-laboral';
 
 const URL = environment.API;
 
@@ -12,20 +13,24 @@ export class AccountService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
-  register(userCredentials:any){
+  //enviar las respuestas por el formulario
+    answer(){}
 
-    this.http.post(`${URL}/api/Account/Register`, userCredentials).subscribe({
-      next: resp => {
+  register(userRegister:any){
+
+    this.http.post(`${URL}/api/Account/register`, userRegister).subscribe({
+      next: (resp:any) => {
+        this.router.navigate(['/'])
         console.log(resp);
       },
       error: error => {
         console.error(error);
       }
-    });
+    })
   }
 
-  loginUser(userCredentials:any){
-    return this.http.post(`${URL}/api/Account/Login`, userCredentials);
+  loginUser(userLogin:any){
+    return this.http.post(`${URL}/api/Account/login`, userLogin)
   }
 
   checkToken(){
@@ -51,4 +56,31 @@ export class AccountService {
     })
   }
 
+  getSitLaboral(){
+
+    return this.http.get(`${URL}/api/Account/getSitLaboral`)
+
+  }
+
+  getModalidades(){
+
+    var resp = this.http.get(`${URL}/api/Account/getModalidades`)
+    console.log(resp)
+    return resp
+
+  }
+
+  getComunasRes(){
+
+    return this.http.get(`${URL}/api/Account/getComunasRes`)
+
+  }
+
+  getComunasTra(){
+
+    return this.http.get(`${URL}/api/Account/getComunasTra`)
+
+  }
 }
+
+

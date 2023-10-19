@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API: "https://pro401-2.azurewebsites.net"
-
+  //API: "https://pro401-2.azurewebsites.net"
+  API: "https://localhost:44300"
 };
 
 /*

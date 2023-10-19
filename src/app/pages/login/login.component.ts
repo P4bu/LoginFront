@@ -14,8 +14,8 @@ export class LoginComponent  implements OnInit {
   constructor( private router:Router, private fb:FormBuilder, private accountService:AccountService, private alertController: AlertController) { }
 
   loginForm = this.fb.group({
-    email: new FormControl('', [Validators.email, Validators.required]),
-    password : new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")])
+    correo: new FormControl('', [Validators.email, Validators.required]),
+    contraseña : new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])[a-z\d]*(?=.*[^A-Za-z0-9]{2,}).{8,}$")])
   });
 
   ngOnInit() {}
@@ -25,7 +25,7 @@ export class LoginComponent  implements OnInit {
   }
 
   submitLoginForm(){
-    //console.log("submit");
+    console.log("submit");
     this.accountService.loginUser(this.loginForm.value).subscribe({
       next: (resp:any) => {
         console.log(resp);
