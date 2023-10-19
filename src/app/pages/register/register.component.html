@@ -103,7 +103,7 @@
 
       <br>
 
-        <ion-select *ngIf="registerForm.get('idSitLaboral')?.value ==1" label="Comuna laboral" label-placement="floating" fill="outline" formControlName="IdComunaTra">
+        <ion-select *ngIf="registerForm.get('idSitLaboral')?.value ==1 && registerForm.get('IdModalidad')?.value !=3" label="Comuna laboral" label-placement="floating" fill="outline" formControlName="IdComunaTra">
           <ion-select-option *ngFor="let item of comunasTra" [value]="item.id"> {{item.nombre}} </ion-select-option>
         </ion-select>
 

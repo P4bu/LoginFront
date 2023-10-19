@@ -31,15 +31,6 @@ export class AccountService {
 
   loginUser(userLogin:any){
     return this.http.post(`${URL}/api/Account/login`, userLogin)
-    // .subscribe({
-    //   next: resp => {
-
-    //   },
-    //   error: error => {
-
-    //   }
-    // })
-
   }
 
   checkToken(){

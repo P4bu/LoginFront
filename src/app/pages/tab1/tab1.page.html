@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Encuesta Transporte AIEP 
+      Encuesta Transporte AIEP
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,101 +18,99 @@
       <ion-card-header>
         <ion-card-title>Pregunta 1</ion-card-title>
         <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
-      </ion-card-header>    
+      </ion-card-header>
       <ion-card-content>
         ¿Que tipo de TRASPORTE utilizas para llegar a tu trabajo?
-        <ion-list>
-          <ion-item>
-            <ion-select aria-label="Selecciona una Opcion" value="public" formControlName="answer1">
-              <ion-select-option value="public">Transporte Publico</ion-select-option>
-              <ion-select-option value="private">Transporte Privado</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+        <br>
+        <br>
+        <ion-select label="Tipo de transporte" label-placement="floating" fill="outline" placeholder="Tipo de transporte" formControlName="idTipoTransporte" errorText="Debe seleccionar una opción">
+          <ion-select-option *ngFor="let item of tipoTransporte" [value]="item.id"> {{item.nombre}} </ion-select-option>
+        </ion-select>
       </ion-card-content>
     </ion-card>
-  
-    <ion-card *ngIf="answerForm.get('answer1')?.value == 'private'" >
+
+    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value == 1" >
       <ion-card-header>
         <ion-card-title>Pregunta 2</ion-card-title>
         <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
-      </ion-card-header>    
+      </ion-card-header>
       <ion-card-content>
         ¿Compartes tu TRANSPORTE PRIVADO?
-        <ion-list>
-          <ion-item>
-            <ion-select aria-label="Selecciona una Opcion" value="yes" formControlName="answer2">
-              <ion-select-option value="yes">Si</ion-select-option>
-              <ion-select-option value="not">No</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+        <br>
+        <br>
+          <ion-select label="¿Es compartido?" label-placement="floating" fill="outline" placeholder="Es compartido?" formControlName="esCompartido" placeholder="¿Es compartido?" errorText="Debe seleccionar una opción">
+            <ion-select-option [value]="true">Si</ion-select-option>
+            <ion-select-option [value]="false">No</ion-select-option>
+          </ion-select>
       </ion-card-content>
     </ion-card>
-  
-    
-    <ion-card>
+
+
+    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value == 1 || answerForm.get('idTipoTransporte')?.value == 2">
       <ion-card-header>
         <ion-card-title>Pregunta 3</ion-card-title>
-        <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
-      </ion-card-header>    
+        <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
+      </ion-card-header>
       <ion-card-content>
         Nombra tu TRANSPORTE más Utilizado
         <br>
-        <ion-input 
-          label="Transporte" 
-          type="string"
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="answer3"
-          errorText=""
-          placeholder="AutoBus">
-        </ion-input>
+        <br>
+        <ion-select
+          label="Transporte"
+          label-placement="floating"
+          fill="outline"
+          placeholder="Transporte"
+          formControlName="idTransporte"
+          errorText="Debe seleccionar una opción">
+          <ion-select-option *ngFor="let item of transporte" [value]="item.id"> {{item.nombre}} </ion-select-option>
+        </ion-select>
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngIf="answerForm.get('esCompartido')?.value == true">
       <ion-card-header>
         <ion-card-title>Pregunta 4</ion-card-title>
         <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
-      </ion-card-header>    
+      </ion-card-header>
       <ion-card-content>
         ¿Cuantos KM recorre diariamente aprox.?
         <br>
-        <ion-input 
-          label="KM" 
-          type="number"
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="answer4"
-          errorText=""
-          placeholder="20Km">
+        <br>
+        <ion-input
+          label="KM recorridos"
+          type="double"
+          label-placement="floating"
+          fill="outline"
+          formControlName="km_recorrido"
+          errorText="Debe ingresar un número"
+          placeholder="Ejemplo: 4.5">
         </ion-input>
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngIf="answerForm.get('esCompartido')?.value == true">
       <ion-card-header>
         <ion-card-title>Pregunta 5</ion-card-title>
         <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
-      </ion-card-header>    
+      </ion-card-header>
       <ion-card-content>
         ¿Cuantos tiempo demora a diario en el traslado?
         <br>
-        <ion-input 
-          label="tiempo" 
+        <br>
+        <ion-input
+          label="Tiempo recorrido"
           type="number"
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="answer5"
-          errorText=""
-          placeholder="2 horas">
+          label-placement="floating"
+          fill="outline"
+          formControlName="minutos_recorrido"
+          errorText="Debe ingresar un número"
+          placeholder="Ejemplo en minutos: 90">
         </ion-input>
       </ion-card-content>
     </ion-card>
 
     <ion-button type="submit" [disabled]="!answerForm.valid" expand="block">Enviar</ion-button>
-    <ion-button (click)="backToLogin()" expand="block">Volver</ion-button>  
+    <ion-button (click)="backToLogin()" expand="block">Volver</ion-button>
 
    </form>
 </ion-content>
