@@ -12,7 +12,7 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-   <form [formGroup]="answerForm" (ngSubmit)="submitForm()">
+   <form [formGroup]="answerForm" (submit)="submitForm()">
 
     <ion-card>
       <ion-card-header>
@@ -105,6 +105,27 @@
           formControlName="minutos_recorrido"
           errorText="Debe ingresar un número"
           placeholder="Ejemplo en minutos: 90">
+        </ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="answerForm.get('esCompartido')?.value == true">
+      <ion-card-header>
+        <ion-card-title>Pregunta 6</ion-card-title>
+        <ion-card-subtitle>Escriba su respuesta</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        ¿Cuantos días trabaja a la semana?
+        <br>
+        <br>
+        <ion-input
+          label="Días de trabajo"
+          type="number"
+          label-placement="floating"
+          fill="outline"
+          formControlName="dias_trabajo"
+          errorText="Debe ingresar un número"
+          placeholder="Ejemplo en días: 4">
         </ion-input>
       </ion-card-content>
     </ion-card>
