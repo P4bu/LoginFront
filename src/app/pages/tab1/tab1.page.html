@@ -29,7 +29,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value != 1" >
+    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value == 2" >
       <ion-card-header>
         <ion-card-title>Pregunta 2</ion-card-title>
         <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
@@ -46,7 +46,7 @@
     </ion-card>
 
 
-    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value == 1 || answerForm.get('idTipoTransporte')?.value == 2">
+    <ion-card *ngIf="answerForm.get('idTipoTransporte')?.value == 1 || answerForm.get('esCompartido')?.value == true">
       <ion-card-header>
         <ion-card-title>Pregunta 3</ion-card-title>
         <ion-card-subtitle>Marca una opcion</ion-card-subtitle>
