@@ -38,7 +38,7 @@ export class RegisterComponent  implements OnInit {
       confirmPassword: new FormControl('', [Validators.required]),
       fecNac: new FormControl('', [Validators.required]),
       IdModalidad: new FormControl(),
-      idSitLaboral: new FormControl('', [Validators.required]),
+      idSitLaboral: new FormControl(''),
       IdComunaRes: new FormControl('', [Validators.required]),
       IdComunaTra: new FormControl(),
       IdEstado: new FormControl('', [Validators.required])

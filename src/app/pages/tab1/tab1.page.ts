@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { HomeService } from 'src/app/services/home.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class Tab1Page implements OnInit {
   transporte: any
 
 
-  constructor(private router: Router, private fb: FormBuilder, private homeService : HomeService) {
+  constructor(private router: Router, private fb: FormBuilder, private homeService : HomeService, private alertController: AlertController) {
     this.answerForm = this.fb.group({
       idTipoTransporte: new FormControl([Validators.required]),
       esCompartido: new FormControl([Validators.required]),
@@ -52,11 +53,12 @@ export class Tab1Page implements OnInit {
       if(value == 'true'){
         this.answerForm?.get('km_recorrido')?.setValidators([Validators.required])
         this.answerForm?.get('minutos_recorrido')?.setValidators([Validators.required])
+        this.answerForm?.get('dias_trabajo')?.setValidators([Validators.required])
       }
     })
 
     this.answerForm?.get('idTipoTransporte')?.valueChanges.subscribe((value) => {
-      if(value == 2){
+      if(value == 1){
         this.answerForm?.get('esCompartido')?.setValue(true)
       }
     })
@@ -72,8 +74,14 @@ export class Tab1Page implements OnInit {
         console.log(resp);
         this.router.navigate(['/home/tabs/tab2']);
       },
-      error: error => {
+      error: async error => {
         console.error(error);
+        const alert = await this.alertController.create({
+          header: 'No es sujeto de Encuesta',
+          message: error.error.message,
+          buttons: ['OK']
+        })
+        alert.present();
       }
     })
   }
