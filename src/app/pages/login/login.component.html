@@ -1,47 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Ingreso al Sistema
-    </ion-title>
+    <ion-title>Ingreso al Sistema</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-    <ion-card-header>
-      <ion-card-title>Registro de movilidad</ion-card-title>
-    </ion-card-header>
-      <form [formGroup]="loginForm" (submit)="submitLoginForm()">
-        <ion-input 
-          label="Email" 
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="correo"
-          errorText="El correo es requerido y debe ser valido"
-          placeholder="Ingrese Email">
-        </ion-input>
-        <br>
-        <ion-input 
-          label="Password" 
-          type="password" 
-          label-placement="floating" 
-          fill="outline" 
-          formControlName="contraseña"
-          errorText="La Contraseña o correo no es Valido"
-          placeholder="Ingrese Password">
-      </ion-input>
-      <br>
-      <ion-button type="submit" [disabled]="!loginForm.valid" expand="block">Ingresar</ion-button> 
-      <br>
-      <ion-button (click)="toRegister()" expand="block">Registrarse</ion-button> 
-      <br>
-      <ion-button expand="block">Olvido su Password</ion-button> 
-      </form>
-    <ion-card-content>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <ion-card class="login-card">
+      <img alt="Imagen decorativa" src="https://ionicframework.com/docs/img/demos/card-media.png" />
 
-    </ion-card-content>
-  </ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Registro de Movilidad</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (submit)="submitLoginForm()" class="form-login">
+          <ion-input
+            label="Email"
+            label-placement="floating"
+            fill="outline"
+            formControlName="correo"
+            errorText="El correo es requerido y debe ser válido"
+            placeholder="Ingrese Email">
+          </ion-input>
+
+          <ion-input
+            label="Contraseña"
+            type="password"
+            label-placement="floating"
+            fill="outline"
+            formControlName="contraseña"
+            errorText="La contraseña es requerida"
+            placeholder="Ingrese contraseña">
+          </ion-input>
+
+          <ion-button
+            type="submit"
+            [disabled]="!loginForm.valid"
+            expand="block"
+            color="primary">
+            Ingresar
+          </ion-button>
+
+          <ion-button (click)="toRegister()" expand="block" color="secondary">
+            Registrarse
+          </ion-button>
+
+          <ion-button expand="block" fill="clear" color="medium">
+            ¿Olvidó su contraseña?
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
-
-

@@ -1,0 +1,18 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-register {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
