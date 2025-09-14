@@ -16,3 +16,26 @@ ion-card-content p {
 .button-group {
   margin-top: 30px;
 }
+.custom-alert {
+  --max-width: 350px;
+  --border-radius: 12px;
+  --background: #ffffff;
+  --color: #222;
+}
+
+.custom-alert .alert-head {
+  color: #d32f2f;
+  font-weight: bold;
+  text-align: center;
+}
+
+.custom-alert .alert-message {
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.custom-alert-button {
+  color: #3880ff;
+  font-weight: bold;
+}

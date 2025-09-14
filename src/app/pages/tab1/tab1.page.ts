@@ -77,11 +77,20 @@ export class Tab1Page implements OnInit {
       error: async error => {
         console.error(error);
         const alert = await this.alertController.create({
-          header: 'No es sujeto de Encuesta',
-          message: error.error.message,
-          buttons: ['OK']
-        })
-        alert.present();
+  header: '⚠️ Atención',
+  subHeader: 'No es sujeto de la encuesta',
+  message: error.error.message || 'No cumple con los criterios para participar en esta encuesta.',
+  cssClass: 'custom-alert',
+  backdropDismiss: false,
+  buttons: [
+    {
+      text: 'Entendido',
+      role: 'cancel',
+      cssClass: 'custom-alert-button'
+    }
+  ]
+});
+await alert.present();
       }
     })
   }
